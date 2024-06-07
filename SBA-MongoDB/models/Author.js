@@ -5,7 +5,7 @@ const authorSchema = new Schema({
   name: {
     type: String,
     required: true,
-    unique: true,
+   
   },
   birthdate: {
     type: Date,

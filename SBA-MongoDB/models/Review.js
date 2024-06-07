@@ -3,9 +3,9 @@ const{ Schema, model} = require('../config/db-connection');
 
 const reviewSchema = new Schema({
     book: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: String,
         ref: 'Book',
-        required: true,
+        
     },
     reviewer: {
         type: String,
