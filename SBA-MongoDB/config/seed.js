@@ -25,19 +25,19 @@ const authors = [
 const books = [
   {
     title: 'Harry Potter and the Philosopher\'s Stone',
-    // author will be populated dynamically after authors are created
+   
     publishedDate: '1997-06-26',
     genres: ['Fantasy', 'Adventure'],
   },
   {
     title: 'A Game of Thrones',
-    // author will be populated dynamically after authors are created
+   
     publishedDate: '1996-08-06',
     genres: ['Fantasy', 'Political', 'Drama'],
   },
   {
     title: 'The Hobbit',
-    // author will be populated dynamically after authors are created
+   
     publishedDate: '1937-09-21',
     genres: ['Fantasy', 'Adventure'],
   },
@@ -45,7 +45,7 @@ const books = [
 
 const reviews = [
   {
-    // book will be populated dynamically after books are created
+   
     reviewer: 'John Doe',
     content: 'Amazing book! A must-read for everyone.',
     rating: 5,
@@ -68,34 +68,24 @@ const reviews = [
 ];
 
 async function seed() {
-  try {
-    await Author.deleteMany({});
-    await Book.deleteMany({});
-    await Review.deleteMany({});
-
-    const createdAuthors = await Author.create(authors);
-    console.log('Authors: ', createdAuthors);
-
-    // Associate books with authors
-    books[0].author = createdAuthors[0]._id;
-    books[1].author = createdAuthors[1]._id;
-    books[2].author = createdAuthors[2]._id;
-
-    const createdBooks = await Book.create(books);
-    console.log('Books: ', createdBooks);
-
-    // Associate reviews with books
-    reviews[0].book = createdBooks[0]._id;
-    reviews[1].book = createdBooks[1]._id;
-    reviews[2].book = createdBooks[2]._id;
-
-    const createdReviews = await Review.create(reviews);
-    console.log('Reviews: ', createdReviews);
-
-    await mongoose.connection.close();
-  } catch (err) {
-    console.log(err);
+    try {
+      await Author.deleteMany({});
+      await Book.deleteMany({});
+      await Review.deleteMany({});
+  
+      const createdAuthors = await Author.create(authors);
+      console.log('Authors: ', createdAuthors);
+  
+      const createdBooks = await Book.create(books);
+      console.log('Books: ', createdBooks);
+  
+      const createdReviews = await Review.create(reviews);
+      console.log('Reviews: ', createdReviews);
+  
+      await mongoose.connection.close();
+    } catch (err) {
+      console.log(err);
+    }
   }
-}
-
-seed();
+  
+  seed();
